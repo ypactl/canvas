@@ -44,6 +44,8 @@
           cnx.fillStyle="#"+squm[squs[i][0]][squs[i][1]][j*5]
           draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
         }
+        cnx.fillStyle="#000000"
+        cnx.fillText(squs[i].map(Number), 0, i*20+10)
       }
     }
     setInterval(squ,1)
