@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squarie Canvas Simulation</title>
 </head>
 <body>
   <canvas id="canvas" width="500" height="500"></canvas>
+  <button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)+1)%squn.length}">»</button>
+  <button onclick="squs.push([squn.indexOf(document.getElementById('name')),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
+  <button onclick="sel=!sel;seln=0">Select</button>
+  <button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
+  <button onclick="if(sel)squs.splice(seln,1)">Delete</button>
   <script>
     var squs=[
       [0,0,200,250,0,0],
@@ -15,6 +21,12 @@
       [["000000",0,0,20,20,"ffbf00",5,0,10,10],["000000",0,0,20,20,"ffbf00",0,-5,10,10],["000000",0,0,20,20,"ffbf00",-5,0,10,10],["000000",0,0,20,20,"ffbf00",0,5,10,10]],
       [["000000",0,0,20,20,"009eaa",5,0,10,10],["000000",0,0,20,20,"009eaa",0,-5,10,10],["000000",0,0,20,20,"009eaa",-5,0,10,10],["000000",0,0,20,20,"009eaa",0,5,10,10]]
     ]
+    var squn = [
+      "GoldTest",
+      "TealTest"
+    ]
+    var sel=false
+    var seln=0
     function draw4(c,x,y,xs,ys) {
       let cnx = c.getContext("2d")
       let xm = x-xs/2
@@ -36,18 +48,21 @@
         squs[i][4]/=1.01
         squs[i][5]/=1.01
         if (Math.random() < 0.003) {
-          squs[i][4]+=4*(Math.random()-0.5)
-          squs[i][5]+=4*(Math.random()-0.5)
+          squs[i][4]+=(Math.random()-0.5)
+          squs[i][5]+=(Math.random()-0.5)
         }
         squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
         for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
           cnx.fillStyle="#"+squm[squs[i][0]][squs[i][1]][j*5]
+          if (sel && seln==i && new Date().getTime()%1000 < 500) {
+            cnx.fillStyle="#7f7f7f"
+          }
           draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
         }
-        //cnx.fillStyle="#000000" - ignore this brother
-        //cnx.fillText(squs[i].map(Number), 0, i*20+10)
       }
+      cnx.fillStyle="#000000"
+      cnx.fillText(squs[seln].map(Math.round), 0, 10)
     }
-    setInterval(squ,1)
+    setInterval(squ,20)
   </script>
 </body>
