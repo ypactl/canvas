@@ -17,8 +17,8 @@
     ]
     function draw4(c,x,y,xs,ys) {
       let cnx = c.getContext("2d")
-      let xm = x-xs/2
-      let ym = y-ys/2
+      let xm = x-xs
+      let ym = y-ys
       xm = (xm%500+500)%500
       ym = (ym%500+500)%500
       cnx.fillRect(x,y,xs,ys)
