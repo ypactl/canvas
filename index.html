@@ -18,6 +18,7 @@
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
   <script>
+    var ste=0
     var squs=[
       [0,0,200,250,0,0],
       [1,0,300,250,0,0]
@@ -46,10 +47,14 @@
     function squ() {
       let cnv = document.getElementById("canvas")
       let cnx = cnv.getContext("2d")
+      ste++
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
       for (let i = 0; i < squs.length; i++) {
+        if (squs[i][0] < 0 || squs[i][0] >= squn.length; i++) {
+          squs[i][0] = Math.floor(Math.random()*squn.length)
+        }
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
         squs[i][4]/=1.01
@@ -71,6 +76,7 @@
         cnx.fillStyle="#000000"
         cnx.fillText(squs[seln].map(v => Math.round(v)), 0, 500)
       }
+      document.title="Ran" ste+" steps"
     }
     setInterval(squ,20)
   </script>
