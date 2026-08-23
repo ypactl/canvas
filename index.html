@@ -17,14 +17,14 @@
     ]
     function draw4(c,x,y,xs,ys) {
       let cnx = c.getContext("2d")
-      let xm = x-xs
-      let ym = y-ys
+      let xm = x-xs/2
+      let ym = y-ys/2
       xm = (xm%500+500)%500
       ym = (ym%500+500)%500
-      cnx.fillRect(x,y,xs,ys)
-      cnx.fillRect(x-500,y,xs,ys)
-      cnx.fillRect(x,y-500,xs,ys)
-      cnx.fillRect(x-500,y-500,xs,ys)
+      cnx.fillRect(xm,y,xs,ys)
+      cnx.fillRect(xm-500,ym,xs,ys)
+      cnx.fillRect(xm,ym-500,xs,ys)
+      cnx.fillRect(xm-500,ym-500,xs,ys)
     }
     function squ() {
       let cnv = document.getElementById("canvas")
@@ -33,11 +33,11 @@
       for (let i = 0; i < squs.length; i++) {
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
-        squs[i][4]/=1.1
-        squs[i][5]/=1.1
+        squs[i][4]/=1.01
+        squs[i][5]/=1.01
         if (Math.random() < 0.003) {
-          squs[i][4]+=10*(Math.random()-0.5)
-          squs[i][5]+=10*(Math.random()-0.5)
+          squs[i][4]+=4*(Math.random()-0.5)
+          squs[i][5]+=4*(Math.random()-0.5)
         }
         squs[i][1] = (Math.round(Math.atan2(-squs[i][4], squs[i][5])/Math.PI*2)+4)%4
         for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
