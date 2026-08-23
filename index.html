@@ -21,7 +21,7 @@
       let ym = y-ys/2
       xm = (xm%500+500)%500
       ym = (ym%500+500)%500
-      cnx.fillRect(xm,y,xs,ys)
+      cnx.fillRect(xm,ym,xs,ys)
       cnx.fillRect(xm-500,ym,xs,ys)
       cnx.fillRect(xm,ym-500,xs,ys)
       cnx.fillRect(xm-500,ym-500,xs,ys)
@@ -44,8 +44,8 @@
           cnx.fillStyle="#"+squm[squs[i][0]][squs[i][1]][j*5]
           draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
         }
-        cnx.fillStyle="#000000"
-        cnx.fillText(squs[i].map(Number), 0, i*20+10)
+        //cnx.fillStyle="#000000" - ignore this brother
+        //cnx.fillText(squs[i].map(Number), 0, i*20+10)
       }
     }
     setInterval(squ,1)
