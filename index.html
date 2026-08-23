@@ -13,7 +13,7 @@
   </style>
   <canvas id="canvas" width="500" height="500"></canvas>
   <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length]}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)+1)%squn.length]}">»</button>
-  <br><button onclick="squs.push([squn.indexOf(document.getElementById('name')),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
+  <br><button onclick="squs.push([squn.indexOf(document.getElementById('name').value),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
@@ -69,7 +69,7 @@
       }
       if (sel) {
         cnx.fillStyle="#000000"
-        cnx.fillText(squs[seln].map(Math.round), 0, 10)
+        cnx.fillText(squs[seln].map(v => Math.round(v)), 0, 500)
       }
     }
     setInterval(squ,20)
