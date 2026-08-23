@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <script>
+    var squs=[
+      [0,0,200,250,0,0],
+      [1,0,300,250,0,0]
+    ]
+    var squm=[
+      [["000000",0,0,20,20,"ffbf00",5,0,10,10],["000000",0,0,20,20,"ffbf00",0,-5,10,10],["000000",0,0,20,20,"ffbf00",-5,0,10,10],["000000",0,0,20,20,"ffbf00",0,5,10,10]],
+      [["000000",0,0,20,20,"009eaa",5,0,10,10],["000000",0,0,20,20,"009eaa",0,-5,10,10],["000000",0,0,20,20,"009eaa",-5,0,10,10],["000000",0,0,20,20,"009eaa",0,5,10,10]]
+    ]
+    function draw4(c,x,y,xs,ys) {
+      let cnx = c.getContext("2d")
+      let xm = x-xs/2
+      let ym = y-ys/2
+      xm = (xm%500+500)%500
+      ym = (ym%500+500)%500
+      cnx.fillRect(x,y,xs,ys)
+      cnx.fillRect(x-500,y,xs,ys)
+      cnx.fillRect(x,y-500,xs,ys)
+      cnx.fillRect(x-500,y-500,xs,ys)
+    }
+    function squ() {
+      let cnv = document.getElementById("canvas")
+      let cnx = cnv.getContext("2d")
+      cnx.clearRect(0,0,500,500)
+      for (let i = 0; i < squs.length; i++) {
+        squs[i][2]+=squs[i][4]
+        squs[i][3]+=squs[i][5]
+        squs[i][4]/=1.1
+        squs[i][5]/=1.1
+        if (Math.random() < 0.01) {
+          squs[i][4]+=Math.random()-0.5
+          squs[i][5]+=Math.random()-0.5
+        }
+        draw4(cnv, squs[i][2], squs[i][3], 25, 25)
+      }
+    }
+    setInterval(squ,1)
+  </script>
+</body>
