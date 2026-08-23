@@ -6,12 +6,17 @@
   <title>Squarie Canvas Simulation</title>
 </head>
 <body>
+  <style>
+    html {
+      background-color: #00003f
+    }
+  </style>
   <canvas id="canvas" width="500" height="500"></canvas>
-  <button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)+1)%squn.length}">»</button>
-  <button onclick="squs.push([squn.indexOf(document.getElementById('name')),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
-  <button onclick="sel=!sel;seln=0">Select</button>
-  <button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
-  <button onclick="if(sel)squs.splice(seln,1)">Delete</button>
+  <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)+1)%squn.length}">»</button>
+  <br><button onclick="squs.push([squn.indexOf(document.getElementById('name')),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
+  <br><button onclick="sel=!sel;seln=0">Select</button>
+  <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
+  <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
   <script>
     var squs=[
       [0,0,200,250,0,0],
@@ -48,8 +53,8 @@
         squs[i][4]/=1.01
         squs[i][5]/=1.01
         if (Math.random() < 0.003) {
-          squs[i][4]+=(Math.random()-0.5)
-          squs[i][5]+=(Math.random()-0.5)
+          squs[i][4]+=4*(Math.random()-0.5)
+          squs[i][5]+=4*(Math.random()-0.5)
         }
         squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
         for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
@@ -60,8 +65,10 @@
           draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
         }
       }
-      cnx.fillStyle="#000000"
-      cnx.fillText(squs[seln].map(Math.round), 0, 10)
+      if (sel) {
+        cnx.fillStyle="#000000"
+        cnx.fillText(squs[seln].map(Math.round), 0, 10)
+      }
     }
     setInterval(squ,20)
   </script>
