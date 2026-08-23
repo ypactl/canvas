@@ -12,7 +12,7 @@
     }
   </style>
   <canvas id="canvas" width="500" height="500"></canvas>
-  <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=(squn.indexOf(document.getElementById('name').value)+1)%squn.length}">»</button>
+  <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length]}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)+1)%squn.length]}">»</button>
   <br><button onclick="squs.push([squn.indexOf(document.getElementById('name')),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
@@ -47,6 +47,8 @@
       let cnv = document.getElementById("canvas")
       let cnx = cnv.getContext("2d")
       cnx.clearRect(0,0,500,500)
+      cnx.fillStyle="#ffffff"
+      cnx.fillRect(0,0,500,500)
       for (let i = 0; i < squs.length; i++) {
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
