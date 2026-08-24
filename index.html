@@ -13,6 +13,7 @@
   </style>
   <canvas id="canvas" width="500" height="500"></canvas>
   <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length]}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)+1)%squn.length]}">»</button>
+  <p id="namesel"></p>
   <br><button onclick="squs.push([squn.indexOf(document.getElementById('name').value),3,Math.random()*500,Math.random()*500,0,0])">Add</button>
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
@@ -25,11 +26,13 @@
     ]
     var squm=[
       [["000000",0,0,20,20,"ffbf00",5,0,10,10],["000000",0,0,20,20,"ffbf00",0,-5,10,10],["000000",0,0,20,20,"ffbf00",-5,0,10,10],["000000",0,0,20,20,"ffbf00",0,5,10,10]],
-      [["000000",0,0,20,20,"009eaa",5,0,10,10],["000000",0,0,20,20,"009eaa",0,-5,10,10],["000000",0,0,20,20,"009eaa",-5,0,10,10],["000000",0,0,20,20,"009eaa",0,5,10,10]]
+      [["000000",0,0,20,20,"009eaa",5,0,10,10],["000000",0,0,20,20,"009eaa",0,-5,10,10],["000000",0,0,20,20,"009eaa",-5,0,10,10],["000000",0,0,20,20,"009eaa",0,5,10,10]],
+      [["000000",0,0,40,40,"ffffff",15,0,2,20],["000000",0,0,40,40],["000000",0,0,40,40,"ffffff",-15,0,2,20],["000000",0,0,40,40,"ffffff",-10,0,2,20,"ffffff",10,0,2,20]]
     ]
     var squn = [
       "GoldTest",
-      "TealTest"
+      "TealTest",
+      "NeutralBoy"
     ]
     var sel=false
     var seln=0
@@ -57,11 +60,11 @@
         }
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
-        squs[i][4]/=1.01
-        squs[i][5]/=1.01
+        squs[i][4]/=1.1
+        squs[i][5]/=1.1
         if (Math.random() < 0.003) {
-          squs[i][4]+=4*(Math.random()-0.5)
-          squs[i][5]+=4*(Math.random()-0.5)
+          squs[i][4]+=10*(Math.random()-0.5)
+          squs[i][5]+=10*(Math.random()-0.5)
         }
         squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
         for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
