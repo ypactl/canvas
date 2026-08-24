@@ -48,7 +48,7 @@
       cnx.fillRect(xm-500,ym-500,xs,ys)
     }
     function squ() {
-      document.getElementById("namesel").value = squn.filter((v)=>{return v.startsWith(document.getElementById("name").value)})
+      document.getElementById("namesel").innerHTML = squn.filter((v)=>{return v.startsWith(document.getElementById("name").value)})
       let cnv = document.getElementById("canvas")
       let cnx = cnv.getContext("2d")
       ste++
