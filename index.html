@@ -20,6 +20,7 @@
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
+  <p id="deb">update plz</p>
   <script>
     var ste=0
     var squs=[
@@ -112,6 +113,7 @@
         cnx.fillStyle="#000000"
         cnx.fillText(squs[seln].toString(), 0, 500)
       }
+      document.getElementById("deb").innerHTML = "This is usually here when I need to debug something. You may see this a lot because I am not a great coder.<br>"+squs+"<br>"+objs
     }
     setInterval(squ,20)
   </script>
