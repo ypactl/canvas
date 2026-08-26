@@ -22,6 +22,10 @@
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
   <p id="deb">update plz</p>
   <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      document.getElementById("").innerHTML = ("Message: " + message + "<br>" + "Line: " + lineno + "Col: " + colno)
+      return ttue
+    }
     var ste=0
     var squs=[
       [0,0,200,250,0,0,100,1],
@@ -81,7 +85,7 @@
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
           squs[i][0] = Math.floor(Math.random()*squn.length)
         }
-        squs[6]-=Math.hypot(squs[i][4], squs[i][5])/100
+        squs[i][6]-=Math.hypot(squs[i][4], squs[i][5])/100
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
         squs[i][4]/=1.1
@@ -113,7 +117,6 @@
         cnx.fillStyle="#000000"
         cnx.fillText(squs[seln].toString(), 0, 500)
       }
-      document.getElementById("deb").textContent = "This is usually here when I need to debug something. You may see this a lot because I am not a great coder. | "+squs+" | "+objs
     }
     setInterval(squ,20)
   </script>
