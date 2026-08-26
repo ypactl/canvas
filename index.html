@@ -62,7 +62,7 @@
       56: "01213 12131 12131 01213",
       57: "01231 12131 12131 016",
     }
-    var text=[]
+    var text=[["0123456789‰", "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 0, Math.random()*3+2, 200]]
     var sel=false
     var seln=0
     function mod(x,y) {
@@ -132,9 +132,29 @@
           draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
       }
+      text=text.filter((v) => {v[5] > ste})
+      for (let i = 0; i < text.length; i++) {
+        cnx.fillStyle = text[i][1]
+        for (let j = 0; j < text[i][0].length; j++) {
+          let n = text[i][0][j].codePointAt()
+          if (font[n]) {
+            let xo=0
+            let yo=0
+            for (let k = 0; k < font[n].length; i++) {
+              if (font[n][k] == " ") {
+                xo+=text[i][4]
+                yo=0
+              } else {
+                draw4(cnv, text[i][2]+text[i][4]/2+xo, text[i][3]+font[n][k]*text[i][4]/2+yo, text[i][4], font[n][k]*text[i][4]))
+                yo+=text[i][4]*font[n][k]
+              }
+            }
+          }
+        }
+      }
       if (sel) {
         cnx.fillStyle="#000000"
-        cnx.fillText(squs[seln].toString(), 0, 500)
+        cnx.fillText(squs[seln].map(v => v.toFixed(2)).toString(), 0, 500)
       }
     }
     setInterval(squ,20)
