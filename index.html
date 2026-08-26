@@ -71,7 +71,7 @@
     function mdis(p1x, p1y, p2x, p2y) {
       let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
       let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
-      dx = Math.min(dx, 500-px)
+      dx = Math.min(dx, 500-dx)
       dy = Math.min(dy, 500-dy)
       return Math.hypot(dx,dy)
     }
