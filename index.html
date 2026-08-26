@@ -74,6 +74,7 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
+      if (Math.random() < 0.001) objs.push([0,0,0,5*(Math.random()-0.5),5*(Math.random()-0.5),{}])
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
           squs[i][0] = Math.floor(Math.random()*squn.length)
@@ -96,9 +97,19 @@
           draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
         }
       }
+      for (let i = 0; i < objs.length; i++) {
+        objs[1] += objs[3]
+        objs[2] += objs[4]
+        objs[3]/=1.1
+        objs[4]/=1.1
+        for (let j = 0; j < objm[objs[i][0]].length/5; i++) {
+          cnx.fillStyle="#"+objm[objs[i][0]][j*5]
+          draw4(cnv, objm[i][1]+objs[objs[i][0]][j*5+1], objm[i][2]+objs[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
+        }
+      }
       if (sel) {
         cnx.fillStyle="#000000"
-        cnx.fillText(squs[seln]), 0, 500)
+        cnx.fillText(squs[seln], 0, 500)
       }
     }
     setInterval(squ,20)
