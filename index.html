@@ -92,7 +92,7 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      if (Math.random() < 0.001) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
+      if (Math.random() < 0.004) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
@@ -125,7 +125,7 @@
         if (objs[i][0] == 0) {
           let j = 0
           while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2]) >= 10) j++
-          if (j < squs.length) {squs[j][6]+=5;objs[i][6]=false}
+          if (j < squs.length) {text.push(["5", "#00bf00", objs[i][1], objs[i][2], 3, ste+100]);squs[j][6]+=5;objs[i][6]=false}
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
