@@ -75,6 +75,7 @@
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
       if (Math.random() < 0.001) objs.push([0,0,0,5*(Math.random()-0.5),5*(Math.random()-0.5),{}])
+      squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
           squs[i][0] = Math.floor(Math.random()*squn.length)
@@ -102,7 +103,7 @@
         objs[2] += objs[4]
         objs[3]/=1.1
         objs[4]/=1.1
-        for (let j = 0; j < objm[objs[i][0]].length/5; i++) {
+        for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
           draw4(cnv, objm[i][1]+objs[objs[i][0]][j*5+1], objm[i][2]+objs[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
