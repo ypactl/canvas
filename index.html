@@ -132,7 +132,7 @@
           draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
       }
-      text=text.filter((v) => {v[5] > ste})
+      text=text.filter((v) => {return v[5] > ste})
       for (let i = 0; i < text.length; i++) {
         cnx.fillStyle = text[i][1]
         for (let j = 0; j < text[i][0].length; j++) {
@@ -140,12 +140,12 @@
           if (font[n]) {
             let xo=0
             let yo=0
-            for (let k = 0; k < font[n].length; i++) {
+            for (let k = 0; k < font[n].length; k++) {
               if (font[n][k] == " ") {
                 xo+=text[i][4]
                 yo=0
               } else {
-                draw4(cnv, text[i][2]+text[i][4]/2+xo, text[i][3]+font[n][k]*text[i][4]/2+yo, text[i][4], font[n][k]*text[i][4]))
+                if (k%2==0) draw4(cnv, text[i][2]+text[i][4]/2+xo, text[i][3]+font[n][k]*text[i][4]/2+yo, text[i][4], font[n][k]*text[i][4]))
                 yo+=text[i][4]*font[n][k]
               }
             }
