@@ -99,18 +99,18 @@
         }
       }
       for (let i = 0; i < objs.length; i++) {
-        objs[1] += objs[3]
-        objs[2] += objs[4]
-        objs[3]/=1.1
-        objs[4]/=1.1
+        objs[i][1] += objs[i][3]
+        objs[i][2] += objs[i][4]
+        objs[i][3]/=1.1
+        objs[i][4]/=1.1
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
-          draw4(cnv, objm[i][1]+objs[objs[i][0]][j*5+1], objm[i][2]+objs[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
+          draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
       }
       if (sel) {
         cnx.fillStyle="#000000"
-        cnx.fillText(squs[seln], 0, 500)
+        cnx.fillText(squs[seln].toString(), 0, 500)
       }
     }
     setInterval(squ,20)
