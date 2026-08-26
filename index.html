@@ -23,7 +23,7 @@
   <p id="deb">update plz</p>
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
-      document.getElementById("").innerHTML = ("Message: " + message + "<br>" + "Line: " + lineno + "Col: " + colno)
+      document.getElementById("deb").innerHTML = ("Message: " + message + "<br>" + "Line: " + lineno + "Col: " + colno)
       return ttue
     }
     var ste=0
@@ -45,7 +45,7 @@
     ]
     var objs=[]
     var objm = [
-      ["007fff",0,0,8,10,"007fff",0,0,10,8]
+      ["007fff",0,0,6,10,"007fff",0,0,10,6]
     ]
     var objn = [
       "bluberry"
@@ -79,7 +79,7 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      if (Math.random() < 0.001) objs.push([0,0,0,5*(Math.random()-0.5),5*(Math.random()-0.5),{}])
+      if (Math.random() < 0.001) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{}])
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
