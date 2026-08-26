@@ -51,16 +51,16 @@
       "bluberry"
     ]
     var font={
-      48: "016 161 161 016",
-      49: "02141 01151 8 071",
-      50: "01133 13121 12131 01241",
-      51: "241 161 12131 313",
-      52: "023 0121 131 8",
-      53: "421 12131 12131 133",
-      54: "016 12131 12131 0123",
-      55: "2 152 132 4",
-      56: "01213 12131 12131 01213",
-      57: "01231 12131 12131 016",
+      48: "1021 1721 0116 3116",
+      49: "2017 0741 0211 1111",
+      50: "0513 1731 1411 2311 3112 1021 0111",
+      51: "0111 1021 3112 2311 3413 1721 0611",
+      52: "0431 3018 0212 1111 2011",
+      53: "0041 0113 1321 3413 1721 0611",
+      54: "1031 0116 3413 1321 1721",
+      55: "0111 0031 3014 2412 1612",
+      56: "1021 1321 1721 0112 0413 3112 3413",
+      57: "1021 1321 1721 3116 0611 0112",
     }
     var text=[["0123456789‰", "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 0, Math.random()*3+2, 200]]
     var sel=false
@@ -132,26 +132,16 @@
           draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
       }
-      text=text.filter((v) => {return v[5] > ste})
+      /*text=text.filter((v) => {return v[5] > ste})
       for (let i = 0; i < text.length; i++) {
         cnx.fillStyle = text[i][1]
         for (let j = 0; j < text[i][0].length; j++) {
           let n = text[i][0][j].codePointAt()
           if (font[n]) {
-            let xo=0
-            let yo=0
-            for (let k = 0; k < font[n].length; k++) {
-              if (font[n][k] == " ") {
-                xo+=text[i][4]
-                yo=0
-              } else {
-                if (k%2==0) draw4(cnv, text[i][2]+text[i][4]/2+xo, text[i][3]+font[n][k]*text[i][4]/2+yo, text[i][4], font[n][k]*text[i][4]))
-                yo+=text[i][4]*font[n][k]
-              }
-            }
+            
           }
         }
-      }
+      }*/
       if (sel) {
         cnx.fillStyle="#000000"
         cnx.fillText(squs[seln].map(v => v.toFixed(2)).toString(), 0, 500)
