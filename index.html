@@ -140,7 +140,7 @@
           if (font[n]) {
             let t = font[n].split(" ").map(v => v.split("").map(Number))
             for (let k = 0; k < t.length; k++) {
-              draw4(cnv, t[k][0]+t[k][2]*text[i][4]/2+6*text[i][4]*j, t[k][1]+t[k][3]*text[i][4]/2, t[k][2]*text[i][4], t[k][3]*text[i][4])
+              draw4(cnv, t[k][0]*text[i][4]+t[k][2]*text[i][4]/2+6*text[i][4]*j+text[i][2], t[k][1]*text[i][4]+t[k][3]*text[i][4]/2+text[i][3], t[k][2]*text[i][4], t[k][3]*text[i][4])
             }
           }
         }
