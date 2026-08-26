@@ -77,10 +77,12 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
+      squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
           squs[i][0] = Math.floor(Math.random()*squn.length)
         }
+        squs[6]-=Math.hypot(squs[i][4], squs[i][5])/100
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
         squs[i][4]/=1.1
@@ -100,7 +102,7 @@
       }
       if (sel) {
         cnx.fillStyle="#000000"
-        cnx.fillText(squs[seln].map(v => Math.round(v)), 0, 500)
+        cnx.fillText(squs[seln]), 0, 500)
       }
     }
     setInterval(squ,20)
