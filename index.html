@@ -132,16 +132,19 @@
           draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
       }
-      /*text=text.filter((v) => {return v[5] > ste})
+      text=text.filter((v) => {return v[5] > ste})
       for (let i = 0; i < text.length; i++) {
         cnx.fillStyle = text[i][1]
         for (let j = 0; j < text[i][0].length; j++) {
           let n = text[i][0][j].codePointAt()
           if (font[n]) {
-            
+            let t = font[n].split(" ").map(v => v.split("").map(Number))
+            for (let k = 0; k < t.length; k++) {
+              draw4(cnv, t[k][0]+t[k][2]*text[i][4]/2+6*text[i][4]*j, t[k][1]+t[k][3]*text[i][4]/2, t[k][2]*text[i][4], t[k][3]*text[i][4])
+            }
           }
         }
-      }*/
+      }
       if (sel) {
         cnx.fillStyle="#000000"
         cnx.fillText(squs[seln].map(v => v.toFixed(2)).toString(), 0, 500)
