@@ -20,7 +20,7 @@
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
-  <p id="deb">update plz</p>
+  <p id="deb">An error will show up here if an error occurs.</p>
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
       document.getElementById("deb").innerHTML = ("Message: " + message + "<br>" + "Line: " + lineno + "Col: " + colno)
@@ -50,6 +50,19 @@
     var objn = [
       "bluberry"
     ]
+    var font={
+      48: "016 161 161 016",
+      49: "02141 01151 8 071",
+      50: "01133 13121 12131 01241",
+      51: "241 161 12131 313",
+      52: "023 0121 131 8",
+      53: "421 12131 12131 133",
+      54: "016 12131 12131 0123",
+      55: "2 152 132 4",
+      56: "01213 12131 12131 01213",
+      57: "01231 12131 12131 016",
+    }
+    var text=[]
     var sel=false
     var seln=0
     function mod(x,y) {
@@ -79,7 +92,7 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      if (Math.random() < 0.001) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{}])
+      if (Math.random() < 0.001) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
@@ -103,11 +116,17 @@
           draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
         }
       }
+      objs=objs.filter((v) => {return v[6]})
       for (let i = 0; i < objs.length; i++) {
         objs[i][1] += objs[i][3]
         objs[i][2] += objs[i][4]
         objs[i][3]/=1.1
         objs[i][4]/=1.1
+        if (objs[i][0] == 0) {
+          let j = 0
+          while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2]) >= 10) j++
+          if (j < squs.length) {squs[j][6]+=5;objs[i][6]=false}
+        }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
           draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
