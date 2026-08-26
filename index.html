@@ -51,14 +51,11 @@
       return (x%y+y)%y
     }
     function mdis(p1x, p1y, p2x, p2y) {
-      let c = [mod(p1x, 500), mod(p1y, 500), mod(p2x, 500), mod(p2y, 500)]
-      let o = [[-1,-1],[0,-1],[1,-1],[-1,0],[0,0],[1,0],[-1,1],[0,1],[1,1]]
-      let d = o.map(v => Math.hypot(v[0]*500+c[0]-c[2], v[1]*500+c[1]-c[3]))
-      let n = 0
-      for (let i = 1; i < 9; i++) {
-        if (d[n] > d[i]) n=i
-      }
-      return d[n]
+      let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
+      let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
+      dx = Math.min(dx, 500-px)
+      dy = Math.min(dy, 500-dy)
+      return Math.hypot(dx,dy)
     }
     function draw4(c,x,y,xs,ys) {
       let cnx = c.getContext("2d")
@@ -77,7 +74,6 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
           squs[i][0] = Math.floor(Math.random()*squn.length)
