@@ -51,6 +51,22 @@
       "bluberry"
     ]
     var font={
+      32: "",
+      33: "1024 1522",
+      34: "0042 1211 3211",
+      35: "0018 3018 1221 1521",
+      36: "0141 0641 0212 3412 1311 2411 2011 1711",
+      37: "0022 2622 3012 2212 1412 0612",
+      38: "0141 0641 0211 0412 1311",
+      39: "1022 2211",
+      40: "1116 2011 2711",
+      41: "2116 1011 1711",
+      42: "0014 3014 1122",
+      43: "0331 1213",
+      44: "1522 2711",
+      45: "0331",
+      46: "1522",
+      47: "3012 2212 1412 0612",
       48: "1021 1721 0116 3116",
       49: "2017 0741 0211 1111",
       50: "0513 1731 1411 2311 3112 1021 0111",
@@ -88,7 +104,16 @@
       89: "3017 0731 1321 0013",
       90: "0041 0741 3112 0512 1411 2311"
     }
-    var text=[["‰0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 0, Math.random()*0.5+0.5, 200]]
+    var text=[
+      [".".repeat(32).map((v,k) => {k+0}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 0, 1, 200],
+      [".".repeat(32).map((v,k) => {k+32}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 10, 1, 200],
+      [".".repeat(32).map((v,k) => {k+64}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 20, 1, 200],
+      [".".repeat(32).map((v,k) => {k+96}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 30, 1, 200],
+      [".".repeat(32).map((v,k) => {k+128}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 40, 1, 200],
+      [".".repeat(32).map((v,k) => {k+160}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 50, 1, 200],
+      [".".repeat(32).map((v,k) => {k+192}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 60, 1, 200],
+      [".".repeat(32).map((v,k) => {k+224}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 70, 1, 200]
+    ]
     var sel=false
     var seln=0
     function mod(x,y) {
