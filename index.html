@@ -172,8 +172,8 @@
       } else if (m == 1) {
         let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
         let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
-        if (dx >= 250) dx = -dx
-        if (dy >= 250) dy = -dy
+        if (dx >= 250) dx-=500
+        if (dy >= 250) dy-=500
         return [dx, dy]
       }
     }
@@ -229,7 +229,7 @@
             squs[i][5]+=5*g[1]/d
           }
         }
-        text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 2, ste+1])
+        text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
         squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
         for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
           cnx.fillStyle="#"+squm[squs[i][0]][squs[i][1]][j*5]
