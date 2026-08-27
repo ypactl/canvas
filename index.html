@@ -22,7 +22,7 @@
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
   <p id="deb">If an error shows up, it will appear here.</p>
   <p id="sqU"></p>
-  <input id="debc" oninput="">
+  <input id="debc" oninput="" placeholder="Enter path (e.g: squs 0 6)">
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
       document.getElementById("deb").innerHTML = ("Message: " + message + "<br>" + "Line: " + lineno + "Col: " + colno)
@@ -278,12 +278,12 @@
       }
       document.title = "Step "+ste
       let l = 0
-      let t = document.getElementById("debc").value.split("/")
+      let t = document.getElementById("debc").value.split(" ")
       let s = (object, l) => {
         let a = []
         if (typeof object == "object" && object != null) {
           for (let i in object) {
-            if (i != t[l]) {a.push("| ".repeat(l)+i)} else {a.push(s(object[i], l+1))}
+            if (i != t[l]) {a.push("| ".repeat(l)+i)} else {a.push("| ".repeat(l)+i+"<br>"+s(object[i], l+1))}
           }
           return a.join("<br>")
         } else {
@@ -294,7 +294,7 @@
         squs: squs,
         objs: objs
       }
-      document.getElementById("sqU").innerHTML = s(sqU,0)
+      document.getElementById("sqU").innerHTML = "All simulation data<br>"+s(sqU,0)
     }
     setInterval(squ,20)
   </script>
