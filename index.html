@@ -172,8 +172,8 @@
         dy = Math.min(dy, 500-dy)
         return Math.hypot(dx,dy)
       } else if (m == 1) {
-        let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
-        let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
+        let dx = mod(p1x,500)-mod(p2x,500)
+        let dy = mod(p1y,500)-mod(p2y,500)
         if (dx >= 250) dx-=500
         if (dy >= 250) dy-=500
         return [dx, dy]
