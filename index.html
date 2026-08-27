@@ -281,16 +281,20 @@
       let t = document.getElementById("debc").value.split("/")
       let s = (object, layers) => {
         let a = []
-        for (i in object) {
-          if (i != t[l]) {a.push("  ".repeat(l)+i)} else {s(object[i], l+1)}
+        if (typeof object == "object") {
+          for (i in object) {
+            if (i != t[l]) {a.push("  ".repeat(l)+i)} else {s(object[i], l+1)}
+          }
+          return a.join("<br>")
+        } else {
+          return object
         }
-        return a.join("<br>")
       }
       let sqU = {
-        squs: squs
+        squs: squs,
         objs: objs
       }
-      document.getElementById("sqU").innerHTML = squs.join("<br>")
+      document.getElementById("sqU").innerHTML = s(sqU,0)
     }
     setInterval(squ,20)
   </script>
