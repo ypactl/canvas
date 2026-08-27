@@ -283,7 +283,7 @@
         let a = []
         if (typeof object == "object" && object != null) {
           for (let i in object) {
-            if (i != t[l]) {a.push("  ".repeat(l)+i)} else {a.push(s(object[i], l+1))}
+            if (i != t[l]) {a.push("| ".repeat(l)+i)} else {a.push(s(object[i], l+1))}
           }
           return a.join("<br>")
         } else {
