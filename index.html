@@ -281,9 +281,9 @@
       let t = document.getElementById("debc").value.split("/")
       let s = (object, l) => {
         let a = []
-        if (typeof object == "object") {
-          for (i in object) {
-            if (i != t[l]) {a.push("  ".repeat(l)+i)} else {s(object[i], l+1)}
+        if (typeof object == "object" && object != null) {
+          for (let i in object) {
+            if (i != t[l]) {a.push("  ".repeat(l)+i)} else {a.push(s(object[i], l+1))}
           }
           return a.join("<br>")
         } else {
