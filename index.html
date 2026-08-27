@@ -28,8 +28,8 @@
     }
     var ste=0
     var squs=[
-      [0,0,200,250,0,0,100,1],
-      [1,0,300,250,0,0,100,1]
+      [0,0,200,250,0,0,100,1,0,{}],
+      [1,0,300,250,0,0,100,1,0,{}]
     ]
     var squm=[
       [["000000",0,0,20,20,"ffbf00",5,0,10,10],["000000",0,0,20,20,"ffbf00",0,-5,10,10],["000000",0,0,20,20,"ffbf00",-5,0,10,10],["000000",0,0,20,20,"ffbf00",0,5,10,10]],
@@ -162,12 +162,20 @@
     function mod(x,y) {
       return (x%y+y)%y
     }
-    function mdis(p1x, p1y, p2x, p2y) {
-      let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
-      let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
-      dx = Math.min(dx, 500-dx)
-      dy = Math.min(dy, 500-dy)
-      return Math.hypot(dx,dy)
+    function mdis(p1x, p1y, p2x, p2y, m) {
+      if (m == 0) {
+        let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
+        let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
+        dx = Math.min(dx, 500-dx)
+        dy = Math.min(dy, 500-dy)
+        return Math.hypot(dx,dy)
+      } else if (m == 1) {
+        let dx = Math.abs(mod(p1x,500)-mod(p2x,500))
+        let dy = Math.abs(mod(p1y,500)-mod(p2y,500))
+        if (dx >= 250) dx = -dx
+        if (dy >= 250) dy = -dy
+        return [dx, dy]
+      }
     }
     function draw4(c,x,y,xs,ys) {
       let cnx = c.getContext("2d")
@@ -186,21 +194,41 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      if (Math.random() < 0.004) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
+      if (Math.random() < 0.001) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
           squs[i][0] = Math.floor(Math.random()*squn.length)
         }
         squs[i][6]-=Math.hypot(squs[i][4], squs[i][5])/100
+        squs[i][6]=Math.min(squs[i][6], 100*Math.sqrt(squs[i][7]))
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
         squs[i][4]/=1.1
         squs[i][5]/=1.1
-        if (Math.random() < 0.003) {
-          squs[i][4]+=10*(Math.random()-0.5)
-          squs[i][5]+=10*(Math.random()-0.5)
+        if (Math.random() < 0.0001) {
+          squs[i][8] = Math.floor(Math.random()*2)
         }
+        if (squs[i][8] == 0) {
+          if (Math.random() < 0.003) {
+            squs[i][4]+=10*(Math.random()-0.5)
+            squs[i][5]+=10*(Math.random()-0.5)
+          }
+        }
+        if (squs[i][8] == 1) {
+          if (Math.random() < 0.0001 || !squs[i][9].target) {
+            let r = Math.floor(Math.random()*(squs.length-1))
+            r += r>=i
+            squs[i][9].target = r
+          }
+          if (Math.random() < 0.01) {
+            let g = mdis(squs[i][2], squs[squs[i][9].target][2], squs[i][3], squs[squs[i][9].target][3], 1)
+            let d = Math.max(g[0], g[1])
+            squs[i][4]+=5*g[0]/d
+            squs[i][5]+=5*g[1]/d
+          }
+        }
+        text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 2, ste+1])
         squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
         for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
           cnx.fillStyle="#"+squm[squs[i][0]][squs[i][1]][j*5]
@@ -218,8 +246,8 @@
         objs[i][4]/=1.1
         if (objs[i][0] == 0) {
           let j = 0
-          while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2]) >= 10) j++
-          if (j < squs.length) {text.push(["5", "#00bf00", objs[i][1], objs[i][2], 3, ste+100]);squs[j][6]+=5;objs[i][6]=false}
+          while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 10) j++
+          if (j < squs.length) {text.push(["+5HP", "#00bf00", objs[i][1], objs[i][2], 2, ste+100]);squs[j][6]+=5;objs[i][6]=false}
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
@@ -245,10 +273,11 @@
           }
         }
       }
-      if (sel) {
+      if (sel && seln < squs.length) {
         cnx.fillStyle="#000000"
         cnx.fillText(squs[seln].map(v => v.toFixed(2)).toString(), 0, 500)
       }
+      document.title = "Step "+ste
     }
     setInterval(squ,20)
   </script>
