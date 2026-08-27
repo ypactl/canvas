@@ -20,8 +20,8 @@
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
+  <p id="deb">If an error shows up, it will appear here.</p>
   <p id="sqU"></p>
-  <p id="deb">An error will show up here if an error occurs.</p>
   <input id="debc" oninput="">
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
@@ -277,6 +277,19 @@
         }
       }
       document.title = "Step "+ste
+      let l = 0
+      let t = document.getElementById("debc").value.split("/")
+      let s = (object, layers) => {
+        let a = []
+        for (i in object) {
+          if (i != t[l]) {a.push("  ".repeat(l)+i)} else {s(object[i], l+1)}
+        }
+        return a.join("<br>")
+      }
+      let sqU = {
+        squs: squs
+        objs: objs
+      }
       document.getElementById("sqU").innerHTML = squs.join("<br>")
     }
     setInterval(squ,20)
