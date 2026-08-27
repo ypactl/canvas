@@ -105,14 +105,14 @@
       90: "0041 0741 3112 0512 1411 2311"
     }
     var text=[
-      [".".repeat(32).map((v,k) => {k+0}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 0, 1, 200],
-      [".".repeat(32).map((v,k) => {k+32}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 10, 1, 200],
-      [".".repeat(32).map((v,k) => {k+64}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 20, 1, 200],
-      [".".repeat(32).map((v,k) => {k+96}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 30, 1, 200],
-      [".".repeat(32).map((v,k) => {k+128}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 40, 1, 200],
-      [".".repeat(32).map((v,k) => {k+160}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 50, 1, 200],
-      [".".repeat(32).map((v,k) => {k+192}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 60, 1, 200],
-      [".".repeat(32).map((v,k) => {k+224}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 70, 1, 200]
+      [".".repeat(32).split("").map((v,k) => {k+0}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 0, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+32}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 10, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+64}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 20, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+96}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 30, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+128}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 40, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+160}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 50, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+192}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 60, 1, 200],
+      [".".repeat(32).split("").map((v,k) => {k+224}), "#"+".".repeat(6).split("").map(v => "0123456789abcdef"[Math.floor(Math.random()*16)]).join(""), 0, 70, 1, 200]
     ]
     var sel=false
     var seln=0
