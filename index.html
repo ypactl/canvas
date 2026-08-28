@@ -206,8 +206,8 @@
       let cnx = cnv.getContext("2d")
       ste++
       for (let i = 0; i < pending.length; i++) {
-        if (pending[i][0] = "squs") squs.push(pending[i][1])
-        if (pending[i][0] = "objs") objs.push(pending[i][1])
+        if (pending[i][0] == "squs") squs.push(pending[i][1])
+        if (pending[i][0] == "objs") objs.push(pending[i][1])
       }
       pending=[]
       cnx.clearRect(0,0,500,500)
