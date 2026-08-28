@@ -279,7 +279,7 @@
           if (sel && seln==i && new Date().getTime()%1000 < 500) {
             cnx.fillStyle="#7f7f7f"
           }
-          draw4(cnv, squs[i][2]+squm[squs[i][0]][ra][j*5+1], squs[i][3]+squm[squs[i][0]][ra][j*5+2], squm[squs[i][0]][ra][j*5+3], squm[squs[i][0]][ra][j*5+4])
+          if (ste%sp == 0) draw4(cnv, squs[i][2]+squm[squs[i][0]][ra][j*5+1], squs[i][3]+squm[squs[i][0]][ra][j*5+2], squm[squs[i][0]][ra][j*5+3], squm[squs[i][0]][ra][j*5+4])
         }
       }
       objs=objs.filter((v) => {return v[6]})
@@ -325,7 +325,7 @@
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
-          draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
+          if (ste%sp == 0) draw4(cnv, objs[i][1]+objm[objs[i][0]][j*5+1], objs[i][2]+objm[objs[i][0]][j*5+2], objm[objs[i][0]][j*5+3], objm[objs[i][0]][j*5+4])
         }
       }
       text=text.filter((v) => {return v[5] > ste})
@@ -336,12 +336,12 @@
           if (font[n]) {
             let t = font[n].split(" ").map(v => v.split("").map(Number))
             for (let k = 0; k < t.length; k++) {
-              draw4(cnv, t[k][0]*text[i][4]+t[k][2]*text[i][4]/2+6*text[i][4]*j+text[i][2], t[k][1]*text[i][4]+t[k][3]*text[i][4]/2+text[i][3], t[k][2]*text[i][4], t[k][3]*text[i][4])
+              if (ste%sp == 0) draw4(cnv, t[k][0]*text[i][4]+t[k][2]*text[i][4]/2+6*text[i][4]*j+text[i][2], t[k][1]*text[i][4]+t[k][3]*text[i][4]/2+text[i][3], t[k][2]*text[i][4], t[k][3]*text[i][4])
             }
           } else {
             for (let k = 0; k < 8; k++) {
               if (Math.random() < 0.5) {
-                draw4(cnv, text[i][2]+(2+6*j)*text[i][4], text[i][3]+(k+1/2)*text[i][4], text[i][4]*4, text[i][4])
+                if (ste%sp == 0) draw4(cnv, text[i][2]+(2+6*j)*text[i][4], text[i][3]+(k+1/2)*text[i][4], text[i][4]*4, text[i][4])
               }
             }
           }
@@ -367,6 +367,6 @@
       }
       document.getElementById("sqU").innerHTML = "All simulation data<br>"+s(sqU,0)
     }
-    setInterval(() => {for (let i = 0; i < sp; i++) {squ()}},20)
+    setInterval(() => {for (let i = 0; i < sp; i++) {squ()}}, 20)
   </script>
 </body>
