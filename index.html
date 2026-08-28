@@ -311,7 +311,7 @@
         if (objs[i][0] == 3) {
           let j = 0
           while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 25) j++
-          if (j < squs.length) {text.push(["+"+objs[i][5].add+"LVL", "#007fff", objs[i][1], objs[i][2], 2, ste+100]);squs[j][7]+=obj[i][5].add;objs[i][6]=false}
+          if (j < squs.length) {text.push(["+"+objs[i][5].add+"LVL", "#007fff", objs[i][1], objs[i][2], 2, ste+100]);squs[j][7]+=objs[i][5].add;objs[i][6]=false}
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
