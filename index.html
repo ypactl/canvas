@@ -270,7 +270,7 @@
           }
         }
         text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
-        squs[i][1] = Math.atan2(squs[i][5], -squs[i][4])*2/Math.PI
+        squs[i][1] = Math.atan2(squs[i][5], -squs[i][4])*2/Math.PI || 0
         let ra = mod(Math.round(squs[i][1])+2, 4)
         for (let j = 0; j < squm[squs[i][0]][ra].length/5; j++) {
           cnx.fillStyle="#"+squm[squs[i][0]][ra][j*5]
@@ -289,7 +289,11 @@
         if (objs[i][0] == 0) {
           let j = 0
           while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 25) j++
-          if (j < squs.length) {text.push(["+5HP", "#00bf00", objs[i][1], objs[i][2], 2, ste+100]);squs[j][6]+=5;objs[i][6]=false}
+          if (j < squs.length) {
+            text.push(["+5HP", "#00bf00", objs[i][1], objs[i][2], 2, ste+100])
+            squs[j][6]+=5
+            objs[i][6]=false
+          }
         }
         if (objs[i][0] == 1) {
           if (Math.random() < 0.0001) objs[i][0]=2
@@ -311,7 +315,11 @@
         if (objs[i][0] == 3) {
           let j = 0
           while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 25) j++
-          if (j < squs.length) {text.push(["+"+objs[i][5].add+"LVL", "#007fff", objs[i][1], objs[i][2], 2, ste+100]);squs[j][7]+=objs[i][5].add;objs[i][6]=false}
+          if (j < squs.length) {
+            text.push(["+"+objs[i][5].add+"LVL", "#007fff", objs[i][1], objs[i][2], 2, ste+100])
+            squs[j][7]+=objs[i][5].add
+            objs[i][6]=false
+          }
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
