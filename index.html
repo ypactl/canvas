@@ -65,6 +65,7 @@
       "seed",
       "tree"
     ]
+    var pending = []
     var font={
       32: "",
       33: "1024 1522",
@@ -204,10 +205,15 @@
       let cnv = document.getElementById("canvas")
       let cnx = cnv.getContext("2d")
       ste++
+      for (let i = 0; i < pending.length; i++) {
+        if (pending[i][0] = "squs") squs.push(pending[i][1])
+        if (pending[i][0] = "objs") objs.push(pending[i][1])
+      }
+      pending=[]
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      if (Math.random() < 0.001) objs.push([Math.floor(Math.random()*1.1),0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
+      if (Math.random() < 0.001) objs.push([Math.floor(Math.random()+0.1),0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
@@ -291,7 +297,7 @@
           }
           if (Math.random() < 0.0001) {
             for (let j = 0; j < objs[i][5].berrycount; j++) {
-              objs.push([0,0,0,10*Math.random()-5,10*Math.random()-5,{},true])
+              pending.push(["objs",[0,0,0,10*Math.random()-5,10*Math.random()-5,{},true]])
             }
             objs[i][6] = false
           }
