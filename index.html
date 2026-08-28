@@ -57,9 +57,13 @@
     var objs=[]
     var objm = [
       ["007fff",0,0,6,10,"007fff",0,0,10,6]
+      ["7f3f00",0,0,4,8],
+      ["7f3f00",0,10,5,20,"00ff00",0,20,16,20,"00ff00",0,20,20,16]
     ]
     var objn = [
       "bluberry"
+      "seed",
+      "tree"
     ]
     var font={
       32: "",
@@ -203,7 +207,7 @@
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
-      if (Math.random() < 0.001) objs.push([0,0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
+      if (Math.random() < 0.001) objs.push([Math.floor(Math.random()*1.1),0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
@@ -216,7 +220,7 @@
         squs[i][4]/=1.1
         squs[i][5]/=1.1
         if (Math.random() < 0.0001) {
-          squs[i][8] = Math.floor(Math.random()*3)
+          squs[i][8] = Math.floor(Math.random()*4)
         }
         if (squs[i][8] == 0) {
           if (Math.random() < 0.003) {
@@ -244,6 +248,9 @@
         if (squs[i][8] == 3) {
           if (mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 0) < 40) {
             squs[squs[i][9].target][6] -= 5
+            if (squs[squs[i][9].target][6] <= 0) {
+              squs[i][7]+=squs[squs[i][9].target][7]
+            }
             text.push(["-5HP", "#bf0000", squs[squs[i][9].target][2], squs[squs[i][9].target][3], 2, ste+100])
             let g = mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 1)
             let d = Math.hypot(g[0], g[1])
@@ -271,6 +278,23 @@
           let j = 0
           while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 10) j++
           if (j < squs.length) {text.push(["+5HP", "#00bf00", objs[i][1], objs[i][2], 2, ste+100]);squs[j][6]+=5;objs[i][6]=false}
+        }
+        if (objs[i][0] == 1) {
+          if (Math.random() < 0.0001) objs[i][0]=2
+        }
+        if (objs[i][0] == 2) {
+          if (Math.random() < 0.0001) {
+            if (!objs[i][5].berrycount) {
+              objs[i][5].berrycount=0
+            }
+            objs[i][5].berrycount++
+          }
+          if (Math.random() < 0.0001) {
+            for (let i = 0; i < objs[i][5].berrycount; i++) {
+              objs.push([0,0,0,10*Math.random()-5,10*Math.random()-5,{},true])
+            }
+            objs[i][6] = false
+          }
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
