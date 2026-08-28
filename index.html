@@ -226,7 +226,7 @@
         squs[i][4]/=1.1
         squs[i][5]/=1.1
         if (Math.random() < 0.0001) {
-          squs[i][8] = Math.floor(Math.random()*4)
+          squs[i][8] = Math.floor(Math.random()*5)
         }
         if ([0].includes(squs[i][8])) {
           if (Math.random() < 0.003) {
@@ -258,7 +258,7 @@
             squs[squs[i][9].target][9].target = i
             squs[squs[i][9].target][6] -= 5
             if (squs[squs[i][9].target][6] <= 0) {
-              squs[squs[i][9].target][6] = -1e20
+              squs[squs[i][9].target][6] = -1000000000000000000
               squs[i][7]+=squs[squs[i][9].target][7]
             }
             text.push(["-5HP", "#bf0000", squs[squs[i][9].target][2], squs[squs[i][9].target][3], 2, ste+100])
