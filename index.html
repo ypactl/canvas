@@ -224,8 +224,8 @@
             squs[i][5]+=10*(Math.random()-0.5)
           }
         }
-        if (squs[i][8] == 1 && squs.length < 2) squs[i][8] = 0
-        if (squs[i][8] == 1) {
+        if ([1,3].includes(squs[i][8]) && squs.length < 2) squs[i][8] = 0
+        if ([1,3].includes(squs[i][8])) {
           if (Math.random() < 0.0001 || !squs[i][9].target || squs[squs[i][9].target] == undefined) {
             let r = Math.floor(Math.random()*(squs.length-1))
             r += r>=i
@@ -239,7 +239,17 @@
           }
         }
         if (squs[i][8] == 2) {
-          squs[i][6] += (100-squs[i][6])/1000
+          squs[i][6] += 0.0005
+        }
+        if (squs[i][8] == 3) {
+          if (mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 0) < 40) {
+            squs[squs[i][9].target][6] -= 5
+            text.push(["-5HP", "#bf0000", squs[squs[i][9].target][2], squs[squs[i][9].target][3], 2, ste+100])
+            let g = mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 1)
+            let d = Math.hypot(g[0], g[1])
+            squs[squs[i][9].target][4]-=g[0]/d*10
+            squs[squs[i][9].target][5]-=g[1]/d*10
+          }
         }
         text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
         squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
