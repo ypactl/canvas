@@ -259,12 +259,16 @@
             squs[squs[i][9].target][6] -= 5
             if (squs[squs[i][9].target][6] <= 0) {
               squs[i][7]+=squs[squs[i][9].target][7]
+              squs[squs[i][9].target][7] = 0
+              delete squs[i][9].target
             }
-            text.push(["-5HP", "#bf0000", squs[squs[i][9].target][2], squs[squs[i][9].target][3], 2, ste+100])
-            let g = mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 1)
-            let d = Math.hypot(g[0], g[1])
-            squs[squs[i][9].target][4]-=g[0]/d*10
-            squs[squs[i][9].target][5]-=g[1]/d*10
+            text.push(["-5HP", "#bf0000", squs[i][2], squs[i][3], 2, ste+100])
+            if (squs[i][9].target) {
+              let g = mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 1)
+              let d = Math.hypot(g[0], g[1])
+              squs[squs[i][9].target][4]-=g[0]/d*10
+              squs[squs[i][9].target][5]-=g[1]/d*10
+            }
           }
         }
         text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
