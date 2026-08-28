@@ -14,7 +14,7 @@
     }
   </style>
   <canvas id="canvas" width="500" height="500"></canvas>
-  <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length]}">«</button><label for="name"></label><input id="name" type="text" value=""><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)+1)%squn.length]}">»</button>
+  <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length]}">«</button></label><input id="name" type="text" value="" oninput="document.getElementById('namedes').innerHTML = squd[squn.indexOf(document.getElementById('name').value)]"><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)+1)%squn.length]}">»</button><p id="namedes">undefined</p>
   <p id="namesel"></p>
   <br><button onclick="squs.push([squn.indexOf(document.getElementById('name').value),3,Math.random()*500,Math.random()*500,0,0,100,1,0,{}])">Add</button>
   <br><button onclick="sel=!sel;seln=0">Select</button>
@@ -37,13 +37,22 @@
       [["000000",0,0,20,20,"ffbf00",5,0,10,10],["000000",0,0,20,20,"ffbf00",0,-5,10,10],["000000",0,0,20,20,"ffbf00",-5,0,10,10],["000000",0,0,20,20,"ffbf00",0,5,10,10]],
       [["000000",0,0,20,20,"009eaa",5,0,10,10],["000000",0,0,20,20,"009eaa",0,-5,10,10],["000000",0,0,20,20,"009eaa",-5,0,10,10],["000000",0,0,20,20,"009eaa",0,5,10,10]],
       [["000000",0,0,40,40,"ffffff",15,0,2,20],["000000",0,0,40,40],["000000",0,0,40,40,"ffffff",-15,0,2,20],["000000",0,0,40,40,"ffffff",-10,0,2,20,"ffffff",10,0,2,20]],
-      [["000000",0,0,40,40,"ffffff",15,0,2,20,"ffffff",13,-7,2,2],["000000",0,0,40,40],["000000",0,0,40,40,"ffffff",-15,0,2,20,"ffffff",-13,-7,2,2],["000000",0,0,40,40,"ffffff",-10,0,2,20,"ffffff",10,0,2,20,"ffffff",-12,-7,2,2,"ffffff",12,-7,2,2]]
+      [["000000",0,0,40,40,"ffffff",15,0,2,20,"ffffff",13,-7,2,2],["000000",0,0,40,40],["000000",0,0,40,40,"ffffff",-15,0,2,20,"ffffff",-13,-7,2,2],["000000",0,0,40,40,"ffffff",-10,0,2,20,"ffffff",10,0,2,20,"ffffff",-12,-7,2,2,"ffffff",12,-7,2,2]],
+      [[],[],[],[]]
     ]
     var squn = [
       "GoldTest",
       "TealTest",
       "NeutralBoy",
-      "NeutralGirl"
+      "NeutralGirl",
+      "Yuri"
+    ]
+    var squd=[
+      "Test creature for identity rendering.",
+      "Test creature for identity rendering.",
+      "He seems to not care about his surroundings at all.",
+      "She isn't very interested about life, just eating.",
+      "He has # hair, which are fries in its actual form."
     ]
     var objs=[]
     var objm = [
@@ -224,7 +233,7 @@
           }
           if (Math.random() < 0.01) {
             let g = mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 1)
-            let d = Math.max(Math.abs(g[0]), Math.abs(g[1]))
+            let d = Math.max(Math.abs(g[0]), Math.abs(g[1]))/Math.random()
             squs[i][4]-=5*g[0]/d
             squs[i][5]-=5*g[1]/d
           }
