@@ -58,12 +58,14 @@
     var objm = [
       ["007fff",0,0,6,10,"007fff",0,0,10,6],
       ["7f3f00",0,0,8,4],
-      ["7f3f00",0,10,5,20,"00ff00",0,-10,16,20,"00ff00",0,-10,20,16]
+      ["7f3f00",0,10,5,20,"00ff00",0,-10,16,20,"00ff00",0,-10,20,16],
+      ["005fbf",0,0,32,12,"005fbf",0,0,12,32,"007fff",0,0,28,8,"007fff",0,0,8,28]
     ]
     var objn = [
       "bluberry",
       "seed",
-      "tree"
+      "tree",
+      "plusberry"
     ]
     var pending = []
     var font={
@@ -210,16 +212,13 @@
         if (pending[i][0] == "objs") objs.push(pending[i][1])
       }
       pending=[]
-      for (let i = 0; i < squs.length; i++) {
-        if (squs[i][9].attackedby) {
-          squs[squs[i][9].attackedby][7]+=squs[i][7]
-          squs[i][7]=0
-        }
-      }
       cnx.clearRect(0,0,500,500)
       cnx.fillStyle="#ffffff"
       cnx.fillRect(0,0,500,500)
       if (Math.random() < 0.001) objs.push([Math.floor(Math.random()+0.1),0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
+      for (let i = 0; i < squs.length; i++) {
+        if (squs[i][6] <= 0) objs.push([3,squs[i][2],squs[i][3],squs[i][4],squs[i][5],{add:squs[i][7]},true])
+      }
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
@@ -263,9 +262,6 @@
             squs[squs[i][9].target][8] = 4
             squs[squs[i][9].target][9].target = i
             squs[squs[i][9].target][6] -= 5
-            if (squs[squs[i][9].target][6] <= 0) {
-              squs[squs[i][9].target][9].attackedby = i
-            }
             text.push(["-5HP", "#bf0000", squs[i][2], squs[i][3], 2, ste+100])
             let g = mdis(squs[i][2], squs[i][3], squs[squs[i][9].target][2], squs[squs[i][9].target][3], 1)
             let d = Math.hypot(g[0], g[1])
@@ -311,6 +307,11 @@
             }
             objs[i][6] = false
           }
+        }
+        if (objs[i][0] == 3) {
+          let j = 0
+          while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 25) j++
+          if (j < squs.length) {text.push(["+"+objs[i][5].add+"LVL", "#007fff", objs[i][1], objs[i][2], 2, ste+100]);squs[j][7]+=obj[i][5].add;objs[i][6]=false}
         }
         for (let j = 0; j < objm[objs[i][0]].length/5; j++) {
           cnx.fillStyle="#"+objm[objs[i][0]][j*5]
