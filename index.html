@@ -214,9 +214,13 @@
       let cnv = document.getElementById("canvas")
       let cnx = cnv.getContext("2d")
       ste++
-      cnx.clearRect(0,0,500,500)
-      cnx.fillStyle="#ffffff"
-      cnx.fillRect(0,0,500,500)
+      if (ste%sp == 0) {
+        cnx.clearRect(0,0,500,500)
+        let hx = Math.round(Math.cos(ste/864000*Math.PI)*96+159)
+        hx = "#"+[16,1].map(v => "0123456789abcdef"[Math.floor(hx/v)%16]).repeat(3)
+        cnx.fillStyle=hx
+        cnx.fillRect(0,0,500,500)
+      }
       if (Math.random() < 0.001) objs.push([Math.floor(Math.random()+0.1),0,0,100*(Math.random()-0.5),100*(Math.random()-0.5),{},true])
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][6] <= 0) objs.push([3,squs[i][2],squs[i][3],squs[i][4],squs[i][5],{add:squs[i][7]},true])
@@ -276,7 +280,7 @@
         let ra = mod(Math.round(squs[i][1])+2, 4)
         for (let j = 0; j < squm[squs[i][0]][ra].length/5; j++) {
           cnx.fillStyle="#"+squm[squs[i][0]][ra][j*5]
-          if (sel && seln==i && new Date().getTime()%1000 < 500) {
+          if (sel && seln==i && ste%50 < 25) {
             cnx.fillStyle="#7f7f7f"
           }
           if (ste%sp == 0) draw4(cnv, squs[i][2]+squm[squs[i][0]][ra][j*5+1], squs[i][3]+squm[squs[i][0]][ra][j*5+2], squm[squs[i][0]][ra][j*5+3], squm[squs[i][0]][ra][j*5+4])
