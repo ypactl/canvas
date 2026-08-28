@@ -258,7 +258,6 @@
             squs[squs[i][9].target][9].target = i
             squs[squs[i][9].target][6] -= 5
             if (squs[squs[i][9].target][6] <= 0) {
-              squs[squs[i][9].target][6] = -1000000000000000000
               squs[i][7]+=squs[squs[i][9].target][7]
             }
             text.push(["-5HP", "#bf0000", squs[squs[i][9].target][2], squs[squs[i][9].target][3], 2, ste+100])
