@@ -266,13 +266,14 @@
           }
         }
         text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
-        squs[i][1] = (Math.round(Math.atan2(-squs[i][5], squs[i][4])/Math.PI*2)+4)%4
-        for (let j = 0; j < squm[squs[i][0]][squs[i][1]].length/5; j++) {
-          cnx.fillStyle="#"+squm[squs[i][0]][squs[i][1]][j*5]
+        if (Math.random() < 0.01) squs[i][1] = Math.random()*4
+        let ra = mod(Math.round(squs[i][1]), 4)
+        for (let j = 0; j < squm[squs[i][0]][ra].length/5; j++) {
+          cnx.fillStyle="#"+squm[squs[i][0]][ra][j*5]
           if (sel && seln==i && new Date().getTime()%1000 < 500) {
             cnx.fillStyle="#7f7f7f"
           }
-          draw4(cnv, squs[i][2]+squm[squs[i][0]][squs[i][1]][j*5+1], squs[i][3]+squm[squs[i][0]][squs[i][1]][j*5+2], squm[squs[i][0]][squs[i][1]][j*5+3], squm[squs[i][0]][squs[i][1]][j*5+4])
+          draw4(cnv, squs[i][2]+squm[squs[i][0]][ra][j*5+1], squs[i][3]+squm[squs[i][0]][ra][j*5+2], squm[squs[i][0]][ra][j*5+3], squm[squs[i][0]][ra][j*5+4])
         }
       }
       objs=objs.filter((v) => {return v[6]})
