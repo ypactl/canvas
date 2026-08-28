@@ -16,13 +16,16 @@
   <canvas id="canvas" width="500" height="500"></canvas>
   <br><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)-1+squn.length)%squn.length]};document.getElementById('namedes').innerHTML = squd[squn.indexOf(document.getElementById('name').value)]">«</button></label><input id="name" type="text" value="" oninput="document.getElementById('namedes').innerHTML = squd[squn.indexOf(document.getElementById('name').value)]"><button onclick="let n = document.getElementById('name').value;if(!squn.includes(n)){document.getElementById('name').value=squn[0]}else{document.getElementById('name').value=squn[(squn.indexOf(document.getElementById('name').value)+1)%squn.length]};document.getElementById('namedes').innerHTML = squd[squn.indexOf(document.getElementById('name').value)]">»</button><p id="namedes">undefined</p>
   <p id="namesel"></p>
-  <br><button onclick="squs.push([squn.indexOf(document.getElementById('name').value),3,Math.random()*500,Math.random()*500,0,0,100,1,0,{}])">Add</button>
+  <br><button onclick="squs.push([squn.indexOf(document.getElementById('name').value),3,Math.random()*500,Math.random()*500,0,0,mh,1,0,{}])">Add</button>
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
   <p>Set Max HP</p>
   <input id="mh" value="100">
   <button onclick="mh = Number(document.getElementById('mh').value);for (i in squs) {squs[i][6] = Infinity}">Set Max HP</button>
+  <p>Set Speed</p>
+  <input id="sp" value="100">
+  <button onclick="sp = Number(document.getElementById('sp').value)">Set Speed</button>
   <p id="deb">If an error shows up, it will appear here.</p>
   <p id="sqU"></p>
   <input id="debc" oninput="" placeholder="Enter path (e.g: squs 0 6)">
@@ -180,6 +183,7 @@
     var sel=false
     var seln=0
     var mh = 100
+    var sp = 1
     function mod(x,y) {
       return (x%y+y)%y
     }
@@ -267,7 +271,7 @@
             squs[squs[i][9].target][5]-=g[1]/d*10
           }
         }
-        text.push([squs[i][6].toFixed(2)+"/"+(100*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
+        text.push([squs[i][6].toFixed(2)+"/"+(mh*Math.sqrt(squs[i][7])).toFixed(2)+"HP", "#7f00ff", squs[i][2], squs[i][3]-30, 1, ste+1])
         squs[i][1] = Math.atan2(squs[i][5], -squs[i][4])*2/Math.PI || 0
         let ra = mod(Math.round(squs[i][1])+2, 4)
         for (let j = 0; j < squm[squs[i][0]][ra].length/5; j++) {
@@ -363,6 +367,6 @@
       }
       document.getElementById("sqU").innerHTML = "All simulation data<br>"+s(sqU,0)
     }
-    setInterval(squ,20)
+    setInterval(() => {for (let i = 0; i < sp; i++) {squ()}},20)
   </script>
 </body>
