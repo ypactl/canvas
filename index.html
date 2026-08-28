@@ -20,6 +20,9 @@
   <br><button onclick="sel=!sel;seln=0">Select</button>
   <br><button onclick="seln=(seln-1+squs.length)%squs.length">«</button><button onclick="seln=(seln+1)%squs.length">»</button>
   <br><button onclick="if(sel)squs.splice(seln,1)">Delete</button>
+  <p>Set Max HP</p>
+  <input id="mh" value="100">
+  <button onclick="mh = Number(document.getElementById('mh').value);for (i in squs) {squs[i][6] = Infinity}">Set Max HP</button>
   <p id="deb">If an error shows up, it will appear here.</p>
   <p id="sqU"></p>
   <input id="debc" oninput="" placeholder="Enter path (e.g: squs 0 6)">
@@ -177,6 +180,7 @@
     ]
     var sel=false
     var seln=0
+    var mh = 100
     function mod(x,y) {
       return (x%y+y)%y
     }
@@ -225,7 +229,7 @@
           squs[i][0] = Math.floor(Math.random()*squn.length)
         }
         squs[i][6]-=Math.hypot(squs[i][4], squs[i][5])/100
-        squs[i][6]=Math.min(squs[i][6], 100*Math.sqrt(squs[i][7]))
+        squs[i][6]=Math.min(squs[i][6], mh*Math.sqrt(squs[i][7]))
         squs[i][2]+=squs[i][4]
         squs[i][3]+=squs[i][5]
         squs[i][4]/=1.1
