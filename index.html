@@ -276,7 +276,7 @@
         objs[i][4]/=1.1
         if (objs[i][0] == 0) {
           let j = 0
-          while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 10) j++
+          while (j < squs.length && mdis(squs[j][2], squs[j][3], objs[i][1], objs[i][2], 0) >= 25) j++
           if (j < squs.length) {text.push(["+5HP", "#00bf00", objs[i][1], objs[i][2], 2, ste+100]);squs[j][6]+=5;objs[i][6]=false}
         }
         if (objs[i][0] == 1) {
@@ -290,7 +290,7 @@
             objs[i][5].berrycount++
           }
           if (Math.random() < 0.0001) {
-            for (let i = 0; i < objs[i][5].berrycount; i++) {
+            for (let j = 0; j < objs[i][5].berrycount; j++) {
               objs.push([0,0,0,10*Math.random()-5,10*Math.random()-5,{},true])
             }
             objs[i][6] = false
