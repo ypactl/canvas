@@ -306,15 +306,15 @@
           if (Math.random() < 0.0001) objs[i][0]=2
         }
         if (objs[i][0] == 2) {
-          if (Math.random() < 0.0001) {
-            if (!objs[i][5].berrycount) {
+          if (!objs[i][5].berrycount) {
               objs[i][5].berrycount=0
             }
+          if (Math.random() < 0.0001) {
             objs[i][5].berrycount++
           }
           if (Math.random() < 0.0001) {
             for (let j = 0; j < objs[i][5].berrycount; j++) {
-              objs.push([0,0,0,10*Math.random()-5,10*Math.random()-5,{},true])
+              objs.push([0,objs[i][1],objs[i][2],10*Math.random()-5,10*Math.random()-5,{},true])
             }
             objs[i][6] = false
           }
