@@ -226,23 +226,6 @@
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][6] <= 0) objs.push([3,squs[i][2],squs[i][3],squs[i][4],squs[i][5],{add:squs[i][7]},true])
       }
-      let tst
-      test = 0
-      while (tst < squs.length && squs[tst].length != 10) {
-        tst++
-      }
-      if (tst < squs.length) {
-        clearInterval(si)
-        alert("Broken array detected!")
-      }
-      test = 0
-      while (tst < objs.length && objs[tst].length != 6) {
-        tst++
-      }
-      if (tst < objs.length) {
-        clearInterval(si)
-        alert("Broken array detected!")
-      }
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
