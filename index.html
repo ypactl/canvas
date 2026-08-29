@@ -28,8 +28,8 @@
   <button onclick="sp = Number(document.getElementById('sp').value)">Set Speed</button>
   <p id="deb">If an error shows up, it will appear here.</p>
   <p id="sqU"></p>
-  <p>v0.α - Start of simulation development. Squaries were added, and they can wander around while doing nothing. You can add squaries, look at their data, or delete them.<br>v0.β - 3 new squaries were added, actions, health, levels, and objects were added, though you only see the health and objects part.</p>
   <input id="debc" oninput="" placeholder="Enter path (e.g: squs 0 6)">
+  <p>v0.α - Start of simulation development. Squaries were added, and they can wander around while doing nothing. You can add squaries, look at their data, or delete them.<br>v0.β - 3 new squaries were added, actions, health, levels, and objects were added, though you only see the health and objects part.</p>
   <script>
     window.onerror = function(message, source, lineno, colno, error) {
       document.getElementById("deb").innerHTML = ("Message: " + message + "<br>" + "Line: " + lineno + "Col: " + colno)
@@ -226,6 +226,23 @@
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][6] <= 0) objs.push([3,squs[i][2],squs[i][3],squs[i][4],squs[i][5],{add:squs[i][7]},true])
       }
+      let tst
+      test = 0
+      while (tst < squs.length && squs[tst].length != 10) {
+        tst++
+      }
+      if (tst < squs.length) {
+        clearInterval(si)
+        alert("Broken array detected!")
+      }
+      test = 0
+      while (tst < objs.length && objs[tst].length != 6) {
+        tst++
+      }
+      if (tst < objs.length) {
+        clearInterval(si)
+        alert("Broken array detected!")
+      }
       squs=squs.filter((v) => {return v[6] > 0})
       for (let i = 0; i < squs.length; i++) {
         if (squs[i][0] < 0 || squs[i][0] >= squn.length) {
@@ -372,6 +389,6 @@
       }
       document.getElementById("sqU").innerHTML = "All simulation data<br>"+s(sqU,0)
     }
-    setInterval(() => {for (let i = 0; i < sp; i++) {squ()}}, 20)
+    var si = setInterval(() => {for (let i = 0; i < sp; i++) {squ()}}, 20)
   </script>
 </body>
